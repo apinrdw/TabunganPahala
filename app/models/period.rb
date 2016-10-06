@@ -6,6 +6,16 @@ class Period < ApplicationRecord
 
   after_initialize :set_defaults
 
+  def toggle_status
+    active? ? inactive! : active!
+
+    if save
+      { notice: "#{name} period was successfully updated to #{status}" }
+    else
+      { alert: "Error occurred: #{errors.full_messages.join(', ')}" }
+    end
+  end
+
   private
     def set_defaults
       self.status ||= :inactive

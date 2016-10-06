@@ -23,13 +23,7 @@ class PeriodsController < ApplicationController
 
   def toggle_status
     @period = Period.find(params[:id])
-    @period.status = @period.active? ? :inactive : :active
-
-    if @period.save
-      redirect_to periods_path, notice: "Period was successfully updated to #{@period.status}"
-    else
-      redirect_to periods_path, alert: "Error occurred: #{@period.errors.full_messages.join(', ')}"
-    end
+    redirect_to periods_path, @period.toggle_status
   end
 
   private
