@@ -3,29 +3,28 @@
     = link_to new_period_path, class: 'item' do
       = semantic_icon(:plus)
 
-.ui.grid
-  .sixteen.wide.column
-    h1 List Periods
+.sixteen.wide.column
+  h1 List Periods
 
-    table.ui.striped.celled.large.table
-      tbody
-        - @periods.each do |period|
-          tr
-            td.collapsing
-              - if period.active?
-                .ui.green.horizontal.label
-                  = period.status.to_s.titleize
-              - else
-                .ui.red.horizontal.label
-                  = period.status.to_s.titleize
-            td
-              = period.name
-            td.collapsing
-              = link_to toggle_status_period_path(period), class: 'ui labeled icon button', data: { method: :patch, remote: true } do
-                = semantic_icon('toggle on')
-                'Toggle Status
-        - unless @periods.any?
-          tr
-            td
-              = semantic_icon('warning sign')
-              'Data Empty
+  table.ui.striped.celled.large.table
+    tbody
+      - @periods.each do |period|
+        tr
+          td.collapsing
+            - if period.active?
+              .ui.green.horizontal.label
+                = period.status.to_s.titleize
+            - else
+              .ui.red.horizontal.label
+                = period.status.to_s.titleize
+          td
+            = period.name
+          td.collapsing
+            = link_to toggle_status_period_path(period), class: 'ui labeled icon button', data: { method: :patch, remote: true } do
+              = semantic_icon('toggle on')
+              'Toggle Status
+      - unless @periods.any?
+        tr
+          td
+            = semantic_icon('warning sign')
+            'Data Empty

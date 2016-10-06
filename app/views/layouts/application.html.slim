@@ -18,5 +18,8 @@ html
       = render 'shared/navigation_menu'
 
       .ui.container
-        = semantic_flash
-        = yield
+        .ui.grid
+          .sixteen.wide.column
+            = semantic_breadcrumbs
+            = semantic_flash
+          = yield

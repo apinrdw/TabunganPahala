@@ -1,0 +1,7 @@
+en:
+  breadcrumbs:
+    application:
+      index: Home
+    periods:
+      index: Periods
+      new: New
