@@ -1,0 +1,13 @@
+- content_for :navigation_menu do
+  .right.menu
+    = link_to periods_path, class: 'item' do
+      = semantic_icon('arrow left')
+
+.ui.grid
+  .sixteen.wide.column
+    h1 New Period
+
+    = semantic_form_for(@period, html: { class: 'ui form' }) do |f|
+      = f.text_field :name, icon_name: 'align justify'
+      = f.check_box :status, I18n.t('semantic_form.placeholder.period.status'), checked_value: :active
+      = f.submit_button('Save')

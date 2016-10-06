@@ -1,0 +1,9 @@
+en:
+  semantic_form:
+    button:
+      forgot_password: Forgot?
+      disable_with: Submitting...
+    placeholder:
+      period:
+        name: Period Name
+        status: Active Period?

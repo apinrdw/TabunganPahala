@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+
+    title Tabungan Pahala
+
+    = csrf_meta_tags
+    = stylesheet_link_tag :application, media: :all, data: { turbolinks_track: :reload }
+    = javascript_include_tag :application, data: { turbolinks_track: :reload }
+
+  body
+    #sidebar-menu.ui.left.inverted.vertical.labeled.icon.sidebar.menu
+      = link_to root_path, class: 'item' do
+        = semantic_icon(:home)
+        'Home
+      = link_to periods_path, class: 'item' do
+        = semantic_icon(:history)
+        'Periods
+      - if current_period
+        = link_to '#', class: 'item' do
+          = semantic_icon(:university)
+          'Donations
+    .pusher
+      #navigation-menu.ui.inverted.menu.attached
+        a#push-menu.item
+          = semantic_icon(:content)
+        = link_to 'Tabungan Pahala', root_path, class: 'item'
+        = link_to current_period.name, '#', class: 'item' if current_period
+        = yield :navigation_menu
+
+      .ui.container
+        = semantic_flash
+        = yield
