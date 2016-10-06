@@ -1,6 +1,6 @@
 class PeriodsController < ApplicationController
   def index
-    @periods = Period.all
+    @periods = Period.order(created_at: :desc)
   end
 
   def new
