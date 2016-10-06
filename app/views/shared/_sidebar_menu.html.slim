@@ -1,0 +1,11 @@
+#sidebar-menu.ui.left.inverted.vertical.labeled.icon.sidebar.menu
+  = link_to root_path, class: 'item' do
+    = semantic_icon(:home)
+    'Home
+  = link_to periods_path, class: 'item' do
+    = semantic_icon(:history)
+    'Periods
+  - if current_period
+    = link_to '#', class: 'item' do
+      = semantic_icon(:university)
+      'Donations

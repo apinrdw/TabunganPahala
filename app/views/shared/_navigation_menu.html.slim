@@ -1,0 +1,6 @@
+#navigation-menu.ui.inverted.menu.attached
+  a#push-menu.item
+    = semantic_icon(:content)
+  = link_to 'Tabungan Pahala', root_path, class: 'item'
+  = link_to current_period.name, periods_path, class: 'item' if current_period
+  = yield :navigation_menu

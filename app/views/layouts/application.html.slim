@@ -12,24 +12,10 @@ html
     = javascript_include_tag :application, data: { turbolinks_track: :reload }
 
   body
-    #sidebar-menu.ui.left.inverted.vertical.labeled.icon.sidebar.menu
-      = link_to root_path, class: 'item' do
-        = semantic_icon(:home)
-        'Home
-      = link_to periods_path, class: 'item' do
-        = semantic_icon(:history)
-        'Periods
-      - if current_period
-        = link_to '#', class: 'item' do
-          = semantic_icon(:university)
-          'Donations
+    = render 'shared/sidebar_menu'
+
     .pusher
-      #navigation-menu.ui.inverted.menu.attached
-        a#push-menu.item
-          = semantic_icon(:content)
-        = link_to 'Tabungan Pahala', root_path, class: 'item'
-        = link_to current_period.name, '#', class: 'item' if current_period
-        = yield :navigation_menu
+      = render 'shared/navigation_menu'
 
       .ui.container
         = semantic_flash
