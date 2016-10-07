@@ -1,0 +1,14 @@
+- cache donation do
+  tr
+    td.collapsing = donation.receipt_no
+    td = donation.name
+    td.collapsing = donation.phone
+    td.collapsing = simple_format donation.address
+    td.collapsing = number_to_currency donation.amount, unit: 'Rp. '
+    td.collapsing
+      .ui.icon.buttons
+        = link_to edit_period_donation_path(period, donation), class: 'ui button icon primary' do
+          = semantic_icon('write')
+          = link_to period_donation_path(period, donation), class: 'ui button icon red',
+            data: { method: :delete, confirm: t('common.confirmation') } do
+            = semantic_icon('trash')
