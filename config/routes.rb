@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server, at: '/cable'
+
   resources :periods, only: [:index, :new, :create] do
     member do
       patch :toggle_status

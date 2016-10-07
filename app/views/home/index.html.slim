@@ -1,2 +1,12 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+- amount = @donations.sum(:amount)
+
+#dashboard.sixteen.wide.column
+  h1.ui.center.aligned.header data-amount=amount
+    = number_to_currency amount, unit: 'Rp. '
+
+  table.ui.striped.celled.large.table
+    tbody
+      - @donations.each do |donation|
+        tr id="donation-#{donation.id}" data-donation=donation.to_json(only: [:id, :name, :amount])
+          td = donation.name
+          td.right.aligned.collapsing = number_to_currency donation.amount, unit: 'Rp. '

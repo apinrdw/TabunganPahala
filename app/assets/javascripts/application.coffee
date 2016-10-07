@@ -9,6 +9,9 @@ jQuery.extend(jQuery.expr[':'], {
     return $(el).is(':input:not([type=hidden])')
 });
 
+Number.prototype.toCurrencyString = ->
+  return this.toFixed(2).replace(/(\d)(?=(\d{3})+\b)/g,'$1,')
+
 $(document).on 'keypress', 'button[type=submit],input,select', (e) ->
   if (e.which == 13)
     canFocus = $(':focusable')

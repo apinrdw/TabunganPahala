@@ -4,7 +4,7 @@ class DonationsController < ApplicationController
   before_action :set_breadcrumbs
 
   def index
-    @donations = @period.donations
+    @donations = @period.donations.order(created_at: :desc)
   end
 
   def new
@@ -21,6 +21,7 @@ class DonationsController < ApplicationController
     @donation = @period.donations.new(donation_params)
 
     if @donation.save
+      ActionCable.server.broadcast 'donation_channel', donation: @donation.to_json(only: [:id, :name, :amount]), action: action_name
       redirect_to form_redirection_path, notice: 'Donation was successfully created.'
     else
       render :new
@@ -31,6 +32,7 @@ class DonationsController < ApplicationController
     semantic_breadcrumb :edit, edit_period_donation_path(@period, @donation)
 
     if @donation.update(donation_params)
+      ActionCable.server.broadcast 'donation_channel', donation: @donation.to_json(only: [:id, :name, :amount]), action: action_name
       redirect_to form_redirection_path, notice: 'Donation was successfully updated.'
     else
       render :edit
@@ -38,8 +40,10 @@ class DonationsController < ApplicationController
   end
 
   def destroy
-    @donation.destroy
-    redirect_to period_donations_path(@period), notice: 'Donation was successfully destroyed.'
+    if @donation.destroy
+      ActionCable.server.broadcast 'donation_channel', donation: @donation.to_json(only: [:id, :name, :amount]), action: action_name
+      redirect_to period_donations_path(@period), notice: 'Donation was successfully destroyed.'
+    end
   end
 
   private
