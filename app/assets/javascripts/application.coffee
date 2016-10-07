@@ -1,7 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require turbolinks
-#= require semantic-ui
+#= require _custom-semantic-ui
 #= require_tree .
 
 jQuery.extend(jQuery.expr[':'], {
