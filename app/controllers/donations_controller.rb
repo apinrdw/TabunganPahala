@@ -21,7 +21,7 @@ class DonationsController < ApplicationController
     @donation = @period.donations.new(donation_params)
 
     if @donation.save
-      ActionCable.server.broadcast 'donation_channel', donation: @donation.to_json(only: [:id, :name, :amount]), action: action_name
+      donation_broadcast
       redirect_to form_redirection_path, notice: 'Donation was successfully created.'
     else
       render :new
@@ -32,7 +32,7 @@ class DonationsController < ApplicationController
     semantic_breadcrumb :edit, edit_period_donation_path(@period, @donation)
 
     if @donation.update(donation_params)
-      ActionCable.server.broadcast 'donation_channel', donation: @donation.to_json(only: [:id, :name, :amount]), action: action_name
+      donation_broadcast
       redirect_to form_redirection_path, notice: 'Donation was successfully updated.'
     else
       render :edit
@@ -41,7 +41,7 @@ class DonationsController < ApplicationController
 
   def destroy
     if @donation.destroy
-      ActionCable.server.broadcast 'donation_channel', donation: @donation.to_json(only: [:id, :name, :amount]), action: action_name
+      donation_broadcast
       redirect_to period_donations_path(@period), notice: 'Donation was successfully destroyed.'
     end
   end
@@ -65,5 +65,11 @@ class DonationsController < ApplicationController
 
     def form_redirection_path
       params[:save_add_new].present? ? new_period_donation_path(@period) : period_donations_path(@period)
+    end
+
+    def donation_broadcast
+      ActionCable.server.broadcast DonationChannel::CHANNEL_NAME,
+        donation: @donation.to_json(only: [:id, :name, :amount]),
+        action: action_name
     end
 end
