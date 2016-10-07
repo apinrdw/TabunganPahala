@@ -28,10 +28,14 @@ module FormHelper
       end
     end
 
-    def submit_button(text)
-      button_tag class: 'ui button right labeled icon fluid primary',
-        data: { disable_with: I18n.t('semantic_form.button.disable_with') } do
-        semantic_icon('right arrow') + text
+    def submit_button(text, name = '', args = {})
+      args = args.merge(class: 'ui button right labeled icon fluid primary', data: { disable_with: I18n.t('semantic_form.button.disable_with') })
+      args = args.merge(name: name, value: true) if name.present?
+      button_tag args do
+        ui = []
+        ui << semantic_icon('right arrow') if args[:icon]
+        ui << text
+        ui.join.html_safe
       end
     end
 
@@ -72,6 +76,15 @@ module FormHelper
     #     ui.join.html_safe
     #   end
     # end
+
+    def text_area(name, args = {})
+      args = default_args(name).merge(args)
+
+      field_wrapper = FieldWrapper.new(@f.object, name, false, args)
+      field_wrapper.call do
+        @f.text_area(name, args)
+      end
+    end
 
     def text_field(name, args = {})
       args = default_args(name).merge(args)

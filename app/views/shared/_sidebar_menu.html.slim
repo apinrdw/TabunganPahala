@@ -6,6 +6,6 @@
     = semantic_icon(:history)
     'Periods
   - if current_period
-    = link_to '#', class: 'item' do
+    = link_to period_donations_path(current_period), class: 'item' do
       = semantic_icon(:university)
       'Donations

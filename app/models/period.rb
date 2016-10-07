@@ -1,6 +1,8 @@
 class Period < ApplicationRecord
   as_enum :status, { active: 1, inactive: 0 }
 
+  has_many :donations
+
   validates :name, presence: true
   validate :only_one_active_period, if: :active?
 

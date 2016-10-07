@@ -1,0 +1,15 @@
+= content_for :navigation_menu do
+  .right.menu
+    = link_to period_donations_path(current_period), class: 'item' do
+      = semantic_icon('arrow left')
+
+= semantic_form_for([@period, @donation], html: { class: 'ui form' }) do |f|
+  = f.text_field :receipt_no, icon_name: 'barcode'
+  = f.text_field :name, icon_name: 'user'
+  = f.text_field :phone, icon_name: 'tablet'
+  = f.text_area :address, rows: '3'
+  = f.text_field :amount, icon_name: 'credit card alternative'
+  .ui.buttons
+    = f.submit_button 'Save + New', :save_add_new, icon: false
+    .or
+    = f.submit_button 'Save', icon: false

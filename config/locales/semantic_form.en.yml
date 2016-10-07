@@ -7,3 +7,9 @@ en:
       period:
         name: Period Name
         status: Active Period?
+      donation:
+        receipt_no: No. Receipt
+        name: Full Name
+        phone: Mobile / Phone Number
+        address: Address
+        amount: Donation Amount

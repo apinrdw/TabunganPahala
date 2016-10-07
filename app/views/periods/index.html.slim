@@ -23,8 +23,4 @@
             = link_to toggle_status_period_path(period), class: 'ui labeled icon button', data: { method: :patch, remote: true } do
               = semantic_icon('toggle on')
               'Toggle Status
-      - unless @periods.any?
-        tr
-          td
-            = semantic_icon('warning sign')
-            'Data Empty
+      = render 'shared/empty_table' unless @periods.any?

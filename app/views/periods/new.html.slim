@@ -8,5 +8,5 @@
 
   = semantic_form_for(@period, html: { class: 'ui form' }) do |f|
     = f.text_field :name, icon_name: 'align justify'
-    = f.check_box :status, I18n.t('semantic_form.placeholder.period.status'), checked_value: :active
-    = f.submit_button('Save')
+    = f.check_box :status, t('semantic_form.placeholder.period.status'), checked_value: :active
+    = f.submit_button 'Save'

@@ -4,4 +4,8 @@ en:
       index: Home
     periods:
       index: Periods
-      new: New
+      new: New Period
+    donations:
+      index: Donations
+      new: New Donation
+      edit: Edit Donation

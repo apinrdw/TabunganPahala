@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     member do
       patch :toggle_status
     end
+
+    resources :donations, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
   root 'home#index'

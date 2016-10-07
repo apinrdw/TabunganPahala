@@ -22,3 +22,18 @@ $(document).on 'keypress', 'button[type=submit],input,select', (e) ->
 
 $(document).on 'click', '#push-menu', (e) ->
   $('#sidebar-menu').sidebar('toggle')
+
+$(document).on 'confirm', (e) ->
+  element = $(e.target)
+  message = element.data('confirm')
+
+  $('#confirmation-modal').modal({
+    closable: false
+    blurring: true
+    onApprove: ->
+      element.data("confirm", null)
+      element.trigger("click.rails")
+      element.data("confirm", message)
+  }).modal('show')
+
+  return false
