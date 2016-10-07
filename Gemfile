@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Core
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'sqlite3'
+gem 'puma'
 
 # Databases
 gem 'pg', '~> 0.18'
@@ -16,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'slim-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem ' ', platforms: :ruby
+# gem 'execjs', platforms: :ruby
 
 # Assets
 gem 'jquery-rails'
