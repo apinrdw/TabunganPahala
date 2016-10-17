@@ -68,8 +68,6 @@ class DonationsController < ApplicationController
     end
 
     def donation_broadcast
-      ActionCable.server.broadcast DonationChannel::CHANNEL_NAME,
-        donation: @donation.to_json(only: [:id, :name, :amount]),
-        action: action_name
+      DonationBroadcastJob.perform_later @donation, action_name
     end
 end

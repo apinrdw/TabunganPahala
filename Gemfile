@@ -5,8 +5,7 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'puma'
 
 # Databases
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
 
 # Template engines
 gem 'jbuilder', '~> 2.5'
@@ -24,6 +23,7 @@ gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 # Utils
 gem 'simple_enum'
+gem 'sidekiq'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
